@@ -25,23 +25,18 @@ Route::controller(LoginRegisterController::class)->group(function() {
 
 // Public routes of capsule
 Route::controller(CapsuleController::class)->group(function() {
-    Route::get('/capsules', 'index');
+//     Route::get('/capsules', 'index');
     Route::get('/capsules/{id}', 'show');
 
 });
 
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
-
-// Protected routes of product and logout
 Route::middleware('auth:sanctum')->group( function () {
     Route::post('/logout', [LoginRegisterController::class, 'logout']);
 
     Route::controller(CapsuleController::class)->group(function() {
-        Route::post('/capsules', 'store');
+        Route::post('/capsules', 'index');
+        Route::post('/capsules/create', 'store');
         Route::post('/capsules/{id}', 'update');
 //         Route::delete('/capsules/{id}', 'destroy');
     });

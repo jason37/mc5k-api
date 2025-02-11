@@ -13,12 +13,12 @@ class CapsuleController extends Controller
      */
     public function index()
     {
-        $capsules = Capsule::latest()->get();
+         $capsules = Capsule::where('user_id', 1)->get();
 
         if (is_null($capsules->first())) {
             return response()->json([
                 'status'  => 'failed',
-                'message' => 'No capsules found',
+                'message' => 'No capsules found for ' . auth()->id(),
             ], 200);
         }
 
@@ -39,13 +39,12 @@ class CapsuleController extends Controller
           $validate = Validator::make($request->all(), [
             'message' => 'required|string|max:250',
             'open_time' => 'required|date',
-//             'is_opened' => 'required|boolean'
         ]);
 
         if($validate->fails()){
             return response()->json([
                 'status' => 'failed',
-                'message' => 'Validation Error!',
+                'message' => 'Validation error',
                 'data' => $validate->errors(),
             ], 403);
         }
