@@ -15,4 +15,9 @@ class Capsule extends Model
 				'is_opened',
 				'user_id'
     ];
+
+    public function user(): BelongsTo
+		{
+				return $this->belongsTo(User::class);
+		}
 }
