@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->mediumText('message');
             $table->datetime('open_time');
-            $table->boolean('is_opened');
+            $table->boolean('is_opened')->default(0);
             $table->integer('user_id');
             $table->timestamps();
         });

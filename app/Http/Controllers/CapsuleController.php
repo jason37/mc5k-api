@@ -39,7 +39,7 @@ class CapsuleController extends Controller
           $validate = Validator::make($request->all(), [
             'message' => 'required|string|max:250',
             'open_time' => 'required|date',
-            'is_opened' => 'required|boolean'
+//             'is_opened' => 'required|boolean'
         ]);
 
         if($validate->fails()){
@@ -49,6 +49,8 @@ class CapsuleController extends Controller
                 'data' => $validate->errors(),
             ], 403);
         }
+
+				$request->request->add(['user_id' => auth()->id()]);
 
         $capsule = Capsule::create($request->all());
 
