@@ -37,7 +37,8 @@ Route::middleware('auth:sanctum')->group( function () {
     Route::controller(CapsuleController::class)->group(function() {
         Route::post('/capsules', 'index');
         Route::post('/capsules/create', 'store');
-        Route::post('/capsules/{id}', 'update');
+        Route::put('/capsules/{id}', 'update');
+
 //         Route::delete('/capsules/{id}', 'destroy');
     });
 });
