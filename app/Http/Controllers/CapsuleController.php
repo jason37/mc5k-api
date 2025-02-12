@@ -13,7 +13,7 @@ class CapsuleController extends Controller
 		 */
 		public function index()
 		{
-				 $capsules = Capsule::where('user_id', 1)->get();
+				 $capsules = Capsule::where('user_id', auth()->id())->get();
 
 				if (is_null($capsules->first())) {
 						return response()->json([
